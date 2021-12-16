@@ -59,8 +59,8 @@ export default class LoginForm extends Component {
     render() {
         var loginStatus;
         if (this.state.loggedin) {
-            return <Redirect to="/expanseDashboard" />
-           
+            return <Redirect to="/loginPage" />
+
         }
         if (this.state.loginFail) {
             loginStatus = <h3 style={{ color: "red" }}>"Invalid login!!!"</h3>
@@ -69,35 +69,48 @@ export default class LoginForm extends Component {
             <React.Fragment>
                 <div>
                     <form>
-                        <div className="container mt-4">
-                            <h1>Sign Up</h1>
-                            <hr className="divider col-5" />
-                            <div className="form-group col-5">
-                                <label>Email-Id</label>
-                                <div className="input-group">
-                                    <span className="input-group-text"></span>
-                                    <input type="email" className="form-control"
-                                        value={this.state.email}
-                                        onChange={this.handleEmailChange}
-                                        placeholder="Enter your Email-Id" />
-                                </div>
-                            </div>
+                        <center>
+                            <div className="container mt-4">
 
-                            <div className="form-group col-5">
-                                <label>Password</label>
-                                <div className="input-group">
-                                    <span className="input-group-text">
-                                    </span>
-                                    <input type="password" className="form-control"
-                                        value={this.state.password}
-                                        onChange={this.handlePasswordChange}
-                                        placeholder="Enter your Password" />
-                                </div>
-                            </div><br />
-                            <button type="submit" value="submit" class="btn btn-primary col-5"
-                                onClick={this.login}>Login</button>
-                            {loginStatus}
-                        </div>
+                                <h1>Expense Management System</h1>
+                                <div id="div1" className="container mt-4">
+                                    <h1>Sign Up</h1>
+                                    <hr className="divider col-5" />
+                                    <div>
+                                        
+                                    </div>
+                                    <div className="form-group col-5" className='div2'>
+                                        <label>Email-Id</label>
+                                        <div className="input-group">
+                                            <span className="input-group-text"></span>
+                                            <input type="email" className="form-control"
+                                                value={this.state.email}
+                                                onChange={this.handleEmailChange}
+                                                placeholder="Enter your Email-Id" />
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group col-5"className='div2'>
+                                        <label>Password</label>
+                                        <div className="input-group">
+                                            <span className="input-group-text">
+                                            </span>
+                                            <input type="password" className="form-control"
+                                                value={this.state.password}
+                                                onChange={this.handlePasswordChange}
+                                                placeholder="Enter your Password" />
+                                        </div>
+                                    </div><br />
+                                
+                                    <button type="submit" value="submit" style={{width:'500px'}} className='btn btn-primary' 
+                                        onClick={this.login}>Login</button>
+                            
+                                    
+                                    {loginStatus}
+                                </div>   
+                            </div>
+                            <div ></div>
+                        </center>
                     </form>
                 </div>
             </React.Fragment>

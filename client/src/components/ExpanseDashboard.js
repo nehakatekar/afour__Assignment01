@@ -130,11 +130,10 @@ export default class ExpanseDashboard extends Component {
         if (this.state.showDailog) {
             displayAdd =
                 <div>
-                    {/* <hr /> */}
-                    <input type="text" className="form-control col-2" placeholder="Enter New Category"
-                        value={this.state.newCat} onChange={this.handleAddCategory} /><br />
+                    <input type="text"  className="form-control col-2" placeholder="Enter New Category"
+                        value={this.state.newCat} onChange={this.handleAddCategory}  /><br />
                     <br />
-                    <button onClick={this.addNewCat}
+                    <button onClick={this.addNewCat} className='btn btn-primary'
                     >Add</button>
                 </div>
         }
@@ -144,6 +143,8 @@ export default class ExpanseDashboard extends Component {
         return (
 
             <div className="row">
+                
+<a href="loginPage" className="offset-md-11">Back</a>
                 <div className="col-2">
                     <label style={{ fontSize: "25px" }}>Select Date</label><br />
                     <input type="date" className="form-control" placeholder="dd/mm/yyyy"
@@ -153,7 +154,8 @@ export default class ExpanseDashboard extends Component {
                 <div className="col-2">
                     <label style={{ fontSize: "25px" }}>Category</label><br />
                     <div >
-                        <select className="input-group" value={this.state.categ} onChange={this.handlecateg} >
+                        <select className="input-group" value={this.state.categ} onChange={this.handlecateg}
+                        style={{ fontSize: "25px" }} >
                             <option selected>Please Select </option>
 
                             {this.state.catList.map(ele => (
@@ -164,16 +166,16 @@ export default class ExpanseDashboard extends Component {
 
                         <input type="text" className="form-control" placeholder="Enter Amount"
                             value={this.state.amount} onChange={this.handleAddAmount} /><br />
-                        <button onClick={this.save}>Save</button>&emsp;&emsp;
+                        <button onClick={this.save} className='btn btn-primary'>Save</button>&emsp;&emsp;
 
-                        <Link to="/details">
-                            <button type="submit" value="submit">Expense Details</button></Link>
+                        {/* <Link to="/details">
+                            <button type="submit" value="submit">Expense Details</button></Link> */}
                         <br /><br />
                         {/* <button type="submit" value="submit" onClick={this.addCategory}
                             style={{ position: "absolute", right: "50px", top: "40px" }}
                         >Add New Category</button> */}
 
-                        <button type="submit" value="submit" onClick={this.addCategory}
+                        <button type="submit" value="submit" onClick={this.addCategory} className='btn btn-warning'
                         >Add New Category</button><br/><br/>
                         {displayAdd}
 

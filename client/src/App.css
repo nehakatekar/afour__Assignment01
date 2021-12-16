@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,17 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
+
+
+#div1{
+  background-color: rgb(159, 163, 163);
+  padding: 50px;
+  width: 600px;
+ }
+ #div2{
+     width: 400px;   
+ }
+ #login{
+   background-color: aquamarine;
+ }
