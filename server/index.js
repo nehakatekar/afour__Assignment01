@@ -48,13 +48,14 @@ app.post("/login", (req, res) => {
     )
 })
 
-
 app.post("/monthData", (req, res) => {
     const clickMonth = req.body.clickMonth;
-     
-    db.query('SELECT * FROM categoryexpense where date like "%-"?"-%";',[clickMonth],
+    const selectedCategory = req.body.selectedCategory;
+     console.log(selectedCategory)
+    db.query('SELECT * FROM categoryexpense where date like "%-"?"-%" and category = ?;',[clickMonth, req.body.selectedCategory],
      (err, result) => {
         if (err) throw err;
+        console.log('res');
         console.log(result);
         var month = JSON.stringify(result);
         console.log('>> string: ', month);
@@ -120,20 +121,34 @@ app.get("/cate", (req, res) => {
 
 })
 
-app.get("/monthWiseData", (req, res) => {
-    var getCat = "SELECT * FROM categoryexpense;"
-    db.query(getCat, (err, result) => {
+// app.get("/monthWiseData", (req, res) => {
+//     var getCat = "SELECT * FROM categoryexpense;"
+//     db.query(getCat, (err, result) => {
+//         if (err) throw err;
+//         console.log(result);
+//         var catl = JSON.stringify(result);
+//         console.log('>> string: ', catl);
+//         res.send(catl)
+//     })
+
+// })
+
+
+app.post("/weekData", (req, res) => {
+    const startDate = req.body.startDate;
+    const endDate = req.body.endDate;
+    const selectedCategory = req.body.selectedCategory;
+     console.log(selectedCategory)
+    db.query('SELECT * FROM categoryexpense where date between ? and ? and category = ?;',[startDate,endDate, req.body.selectedCategory],
+     (err, result) => {
         if (err) throw err;
+        console.log('res');
         console.log(result);
-        var catl = JSON.stringify(result);
-        console.log('>> string: ', catl);
-        res.send(catl)
+        var month = JSON.stringify(result);
+        console.log('>> string: ', month);
+        res.send(month)
     })
-
 })
-
-
-
 
 
 app.listen(8000, () => {
