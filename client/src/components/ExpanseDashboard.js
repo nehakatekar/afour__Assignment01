@@ -3,6 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 //import { Axios } from 'axios';
 import { Link } from "react-router-dom";
 import Axios, * as others from 'axios';
+import LoginPage from './LoginPage';
 
 
 export default class ExpanseDashboard extends Component {
@@ -13,7 +14,7 @@ export default class ExpanseDashboard extends Component {
             showDailog: false,
             newCat: "",
             amount: "",
-            date: "",
+            date: new Date(),
             categ: "",
             catList: []
         }
@@ -27,13 +28,14 @@ export default class ExpanseDashboard extends Component {
 
     async componentDidMount() {
         this.categoryList();
+        console.log(this.state.date)
         //debugger        
     }
-    
+
     async categoryList() {
         const response = await fetch("http://localhost:8000/cate")
             .then(res => res.json())
-           
+
             .then(res => {
                 this.setState({
                     catList: res
@@ -130,8 +132,8 @@ export default class ExpanseDashboard extends Component {
         if (this.state.showDailog) {
             displayAdd =
                 <div>
-                    <input type="text"  className="form-control col-2" placeholder="Enter New Category"
-                        value={this.state.newCat} onChange={this.handleAddCategory}  /><br />
+                    <input type="text" className="form-control col-2" placeholder="Enter New Category"
+                        value={this.state.newCat} onChange={this.handleAddCategory} /><br />
                     <br />
                     <button onClick={this.addNewCat} className='btn btn-primary'
                     >Add</button>
@@ -142,47 +144,46 @@ export default class ExpanseDashboard extends Component {
 
         return (
 
-            <div className="row">
-                
-<a href="loginPage" className="offset-md-11">Back</a>
-                <div className="col-2">
-                    <label style={{ fontSize: "25px" }}>Select Date</label><br />
-                    <input type="date" className="form-control" placeholder="dd/mm/yyyy"
-                        value={this.state.date} onChange={this.handleDate} />
-                </div>
+            <div>
+                <LoginPage />
+                <div className="container row mt-3">
+                    <div id='div3' className='card bg-secondary'>
 
-                <div className="col-2">
-                    <label style={{ fontSize: "25px" }}>Category</label><br />
-                    <div >
-                        <select className="input-group" value={this.state.categ} onChange={this.handlecateg}
-                        style={{ fontSize: "25px" }} >
-                            <option selected>Please Select </option>
+                        <label style={{ fontSize: "15px" }}>Date:</label>
+                        <input type="date" className="form-control"
+                            value={this.state.date} onChange={this.handleDate} /><br />
 
-                            {this.state.catList.map(ele => (
-                                <option>{ele.category}</option>
-                            ))}
+                        <label style={{ fontSize: "15px" }}>Category:</label>
+                        <div >
+                            <select className="input-group" value={this.state.categ} onChange={this.handlecateg}
+                                style={{ fontSize: "25px" }} >
+                                <option selected>Please Select </option>
 
-                        </select><br />
+                                {this.state.catList.map(ele => (
+                                    <option>{ele.category}</option>
+                                ))}
 
-                        <input type="text" className="form-control" placeholder="Enter Amount"
-                            value={this.state.amount} onChange={this.handleAddAmount} /><br />
-                        <button onClick={this.save} className='btn btn-primary'>Save</button>&emsp;&emsp;
+                            </select><br />
+                            <label style={{ fontSize: "15px" }}>Amount:</label>
+                            <input type="text" className="form-control" placeholder="Enter Amount"
+                                value={this.state.amount} onChange={this.handleAddAmount} /><br />
+                            <button onClick={this.save} className='btn btn-primary'>Save</button>&emsp;&emsp;
 
-                        {/* <Link to="/details">
+                            {/* <Link to="/details">
                             <button type="submit" value="submit">Expense Details</button></Link> */}
-                        <br /><br />
-                        {/* <button type="submit" value="submit" onClick={this.addCategory}
+                            <br /><br />
+                            {/* <button type="submit" value="submit" onClick={this.addCategory}
                             style={{ position: "absolute", right: "50px", top: "40px" }}
                         >Add New Category</button> */}
 
-                        <button type="submit" value="submit" onClick={this.addCategory} className='btn btn-warning'
-                        >Add New Category</button><br/><br/>
-                        {displayAdd}
+                            <button type="submit" value="submit" onClick={this.addCategory} className='btn btn-warning'
+                            >Add New Category</button><br /><br />
+                            {displayAdd}
 
 
+                        </div>
                     </div>
                 </div>
-
             </div>
 
 

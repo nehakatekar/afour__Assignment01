@@ -37,6 +37,7 @@ export default class LoginForm extends Component {
                 this.setState({
                     loggedin: true
                 })
+                localStorage.setItem("UserEmailID", this.state.email)
             }
             console.log(response);
         })

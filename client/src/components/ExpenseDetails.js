@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios, * as others from 'axios';
+import LoginPage from './LoginPage';
 
 class ExpenseDetails extends Component {
     constructor(props) {
@@ -196,8 +197,7 @@ class ExpenseDetails extends Component {
                         ))}
                     </select>
 
-                    &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;
-
+                    &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;&emsp;&emsp;   &emsp;
                     <select onChange={this.handleDropdownChange} value={this.state.clickMonth} style={{ fontSize: "20px" }}>
                         <option selected>Please Select </option>
                         {this.state.month.map(ele => (
@@ -212,18 +212,19 @@ class ExpenseDetails extends Component {
         }
         if (this.state.selectWeekStartDate) {
             displayWeek = <div>&emsp;&emsp;&emsp;
-                <label style={{ fontSize: "35px" }}>Select Week Date &emsp; Select Category</label><br />&emsp;&emsp;&emsp;
-                
-                <input type="date" placeholder="dd/mm/yyyy"
-                    value={this.state.newDate} onChange={this.handleDate} />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <label style={{ fontSize: "35px" }}>Select Category  &emsp; Select Week Date </label><br />&emsp;&emsp;&emsp;
+
               
                 <select value={this.state.selectedCategory} onChange={this.handlecateg} style={{ fontSize: "20px" }} >
                     <option selected>Please Select </option>
                     {this.state.category.map(ele => (
                         <option>{ele.category}</option>
                     ))}
-                </select><br /><br />
-
+                </select>
+                &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;&emsp;&emsp;   &emsp;&emsp;
+                <input type="date" placeholder="dd/mm/yyyy"
+                    value={this.state.newDate} onChange={this.handleDate} />&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <br /><br />
                 <button onClick={this.displayWeeklyData} style={{ backgroundColor: 'lightblue', marginLeft: '200px' }}>
                     Display Weekly Data</button><br/><br/>
             </div>
@@ -270,7 +271,9 @@ class ExpenseDetails extends Component {
         return (
 
             <div>
-<a href="loginPage" className="offset-md-11">Back</a>
+
+
+              <LoginPage/>
                 <div className="container row mt-3">
                     <div className="card col-3 border-primary" style={{ backgroundColor: '#a87771' }}>
                         <div className="card-body" style={{ textAlign: 'center' }} >
